@@ -4,7 +4,31 @@
 }
 
 body{
+  background-image: url("images/bg.jpg");
   background-color: #404040;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  border-style: none;
+  border-color: black;
+  font-size: 80%;
+  color: black;
+}
+
+
+
+#leftfooter
+{
+  position: absolute;
+  left: 0;
+}
+
+#rightFooter
+{
+  position: absolute;
+  right: 0;
 }
 
 #headerList{
@@ -18,8 +42,8 @@ body{
 #headerList li
 {
   display: inline;
-  padding: 2em;
-  font-size: 120%;
+  padding: 1em;
+  font-size: 135%;
 }
 
 a{
@@ -29,10 +53,10 @@ a{
 
 a:hover
 {
-  color:  #0d0d0d;
+  color:  black;
 }
 
 a:active
 {
-  color:  black;
+  color:  #262626;
 }
