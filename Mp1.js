@@ -1,3 +1,4 @@
+
 var changeContents = function(header_id) {
 	var content;
 	if(header_id === "posts") {

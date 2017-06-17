@@ -1,23 +1,35 @@
+<!DOCTYPE html>
 <html>
   <head>
     <link rel = "stylesheet" type = "text/css" href = "MP1.css">
-    <script src = "Mp1.js" type = "text/javascript"></script>
+    <script src = "Mp1.js"></script>
     <title>Client Side Application</title>
   </head>
 <body>
   <header>
-    <div class = headerList>
-      <div> <button class = menu id = posts onclick = "changeContents(this.id);"> View all posts </button></div>
-      <div> <button class = menu id = profile onclick = "changeContents(this.id);">View a user profile </button></div>
-      <div> <button class = menu id = photos onclick = "changeContents(this.id);">View all photos </button></div>
-      <div> <button class = menu id = album onclick = "changeContents(this.id);">View an album </button></div>
-    </div>
+    <ul id = headerList>
+        <li title="See 10 recent posts"><a href=""> View all posts </a></li>
+        <li title="View a user profile"><a href=""> View a user profile </a></li>
+        <li title="View all photos in the system"><a href=""> View all photos </a></li>
+        <li title="View all photos in an album"><a href=""> View an album </a></li>
+    </ul>
   </header>
-    <div id = mainDiv>
-    burat
-  		<div id = contentDiv>
-  			<h1 id = contents></h1>
-  		</div>
+  <h1>
+    <div id = mainDiv >
+
     </div>
+  </h1>
+
+  <footer>
+      <div id="mainfooterdiv">
+        <span>
+          <p id="footerNames">
+          A project by Fritz, Kent and Joe.
+        </p>
+      </span>
+      </div>
+
+
+  </footer>
 </body>
 </html>
