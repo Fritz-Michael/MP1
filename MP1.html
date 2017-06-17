@@ -1,22 +1,22 @@
 <html>
   <head>
     <link rel = "stylesheet" type = "text/css" href = "MP1.css">
-    <script src = "Mp1.js"></script>
+    <script src = "Mp1.js" type = "text/javascript"></script>
     <title>Client Side Application</title>
   </head>
 <body>
   <header>
     <div class = headerList>
-      <div> View all posts </div>
-      <div> View a user profile </div>
-      <div> View all photos </div>
-      <div> View an album </div>
+      <div> <button class = menu id = posts onclick = "changeContents(this.id);"> View all posts </button></div>
+      <div> <button class = menu id = profile onclick = "changeContents(this.id);">View a user profile </button></div>
+      <div> <button class = menu id = photos onclick = "changeContents(this.id);">View all photos </button></div>
+      <div> <button class = menu id = album onclick = "changeContents(this.id);">View an album </button></div>
     </div>
   </header>
-  <h1>
     <div id = mainDiv>
-
+  		<div id = contentDiv>
+  			<h1 id = contents></h1>
+  		</div>
     </div>
-  </h1>
 </body>
 </html>

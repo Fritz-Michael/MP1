@@ -23,8 +23,34 @@ header{
 {
 
   background-color: #444;
-  color: #fff;
   border-radius: 5px;
   padding: 10px;
   font-size: 150%;
+}
+
+.menu {
+  background: transparent;
+  border: none;
+  color: #fff;
+}
+
+.menu:hover {
+  color: purple;
+}
+
+.menu:active {
+  color: green;
+}
+
+#mainDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1.5em;
+}
+
+#contentDiv {
+  height: 80%;
+  width: 95%;
+  background: red;
 }
