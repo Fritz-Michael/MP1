@@ -1,0 +1,30 @@
+#mainDiv
+{
+  font: 2em "Arial"
+
+}
+
+body{
+  background-color: gray;
+}
+
+header{
+  margin: 0;
+}
+
+.headerList{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2em;
+  background-color: #444;
+}
+
+.headerList div
+{
+
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 150%;
+}
