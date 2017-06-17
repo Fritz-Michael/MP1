@@ -33,7 +33,6 @@ footer{
 
 #headerList{
   background-color: #444;
-<<<<<<< HEAD
   color: #fff;
   border-style: ridge;
   border-radius: 10px;
@@ -47,17 +46,24 @@ footer{
   font-size: 135%;
 }
 
-a{
+#mainDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5em;
+}
+
+button{
   color:white;
   text-decoration: none;
 }
 
-a:hover
+button:hover
 {
   color:  black;
 }
 
-a:active
+button:active
 {
   color:  #262626;
 

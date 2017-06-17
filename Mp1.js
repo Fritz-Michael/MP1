@@ -1,6 +1,7 @@
 
 var changeContents = function(header_id) {
 	var content;
+	console.log(header_id);
 	if(header_id === "posts") {
 		content = "posts goes here";
 		document.getElementById("contents").textContent = content;

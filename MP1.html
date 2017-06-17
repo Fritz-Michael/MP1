@@ -8,17 +8,15 @@
 <body>
   <header>
     <ul id = headerList>
-        <li title="See 10 recent posts"><a href=""> View all posts </a></li>
-        <li title="View a user profile"><a href=""> View a user profile </a></li>
-        <li title="View all photos in the system"><a href=""> View all photos </a></li>
-        <li title="View all photos in an album"><a href=""> View an album </a></li>
+        <li title="See 10 recent posts"><button class = menu id = "posts" onclick = "changeContents(this.id);"> View all posts </button></li>
+        <li title="View a user profile"><button class = menu id = "profile" onclick = "changeContents(this.id);"> View a user profile </button></li>
+        <li title="View all photos in the system"><button class = menu id = "photos" onclick = "changeContents(this.id);"> View all photos </button></li>
+        <li title="View all photos in an album"><button class = menu id = "album" onclick = "changeContents(this.id);"> View an album </button></li>
     </ul>
   </header>
-  <h1>
     <div id = mainDiv >
-
+      <h1 id = "contents">hello</h1>
     </div>
-  </h1>
 
   <footer>
       <div id="mainfooterdiv">
