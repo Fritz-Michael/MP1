@@ -39,18 +39,19 @@ header{
 }
 
 .menu:active {
-  color: green;
+  color: deepskyblue;
 }
 
 .photos
 {
     float: left;
-	margin-top: 0.1em; 
+	margin-top: 0.2em; 
 	margin-left: .5%; 
 	height: 255px; 
 	width: 16%; 
 	display : inline-block;
 	margin-bottom: 0.1em;
+    overflow-y:auto;
 }
 
 #mainDiv {
@@ -60,8 +61,7 @@ header{
 	padding-top: 1.5em;
 }
 
-#contentDiv {
-  height: 80%;
+#contentDiv {  
   width: 95%;
   background: #91a3f5;
 }
