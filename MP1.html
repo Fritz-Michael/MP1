@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <link rel = "stylesheet" type = "text/css" href = "MP1.css">
@@ -7,29 +6,38 @@
   </head>
 <body>
   <header>
-    <ul id = headerList>
-        <li title="See 10 recent posts"><a href=""> View all posts </a></li>
-        <li title="View a user profile"><a href=""> View a user profile </a></li>
-        <li title="View all photos in the system"><a href=""> View all photos </a></li>
-        <li title="View all photos in an album"><a href=""> View an album </a></li>
-    </ul>
-  </header>
-  <h1>
-    <div id = mainDiv >
-
+    <div class = headerList>
+      <div> <button class = menu id = posts onclick = "changeContents(this.id);"> View all posts </button></div>
+      <div> <button class = menu id = profile onclick = "changeContents(this.id);">View a user profile </button></div>
+      <div><button class = menu id = photos onclick = "changeContents(this.id);">View all photos </button></div>
+      <div> <button class = menu id = album onclick = "changeContents(this.id);">View an album </button></div>
     </div>
-  </h1>
-
-  <footer>
-      <div id="mainfooterdiv">
-        <span>
-          <p id="footerNames">
-          A project by Fritz, Kent and Joe.
-        </p>
-      </span>
-      </div>
-
-
-  </footer>
+  </header>
+    <div id = mainDiv>
+  		<div id = contentDiv>
+			<div id = images style="display:none;">
+				<img src="Images/Berserk2.jpg" class="photos" alt="Some image">
+				<img src="Images/Berserk1.jpg" class="photos" alt="Another image">
+				<img src="Images/aye boi.jpg" class="photos" alt="Berserk">
+				<img src="Images/バガボンドｖ２．０.jpg" class="photos" alt="Berserk">
+				<img src="Images/バガボンド.png" class="photos" alt="Berserk">
+				<img src="Images/Back Alley Kat - Throwaway Tape Vol. 3.jpg" class="photos" alt="Berserk">
+				<img src="Images/let's get lost.jpg" class="photos" alt="Berserk">
+				<img src="Images/yelo - study.jpg" class="photos" alt="Berserk">
+				<img src="Images/おやすみプンプン.png" class="photos" alt="Berserk">
+				<img src="Images/Hiatus Kaiyote By Fire without text.jpg" class="photos" alt="Berserk">
+				<img src="Images/きれい.jpg" class="photos" alt="Berserk">
+				<img src="Images/ok.jpg" class="photos" alt="Berserk">
+			</div>
+  			<h1 id = contents></h1>
+  		</div>
+    </div>
+	<footer>
+		<div id="mainfooterdiv">
+			<span>
+				<p id="footerNames">A project by Fritz, Kent and Joe.</p>
+			</span>
+		</div>
+	</footer>
 </body>
 </html>
