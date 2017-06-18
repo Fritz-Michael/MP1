@@ -1,70 +1,72 @@
 #mainDiv
 {
   font: 2em "Arial"
+
 }
 
 body{
-  background-image: url("images/bg.jpg");
-  background-color: #404040;
+  background-color: #403874;
 }
 
-footer{
-  position: absolute;
-  bottom: 0;
-  border-style: none;
-  border-color: black;
-  font-size: 80%;
-  color: black;
+header{
+  margin: 0;
 }
 
-
-
-#leftfooter
-{
-  position: absolute;
-  left: 0;
-}
-
-#rightFooter
-{
-  position: absolute;
-  right: 0;
-}
-
-#headerList{
+.headerList{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 2em;
   background-color: #444;
-<<<<<<< HEAD
-  color: #fff;
-  border-style: ridge;
-  border-radius: 10px;
-  text-align: center;
 }
 
-#headerList li
+.headerList div
 {
-  display: inline;
-  padding: 1em;
-  font-size: 135%;
-}
 
-a{
-  color:white;
-  text-decoration: none;
-}
-
-a:hover
-{
-  color:  black;
-}
-
-a:active
-{
-  color:  #262626;
-
+  background-color: #444;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 150%;
 }
 
 .menu {
   background: transparent;
   border: none;
   color: #fff;
+}
+
+.menu:hover {
+  color: purple;
+}
+
+.menu:active {
+  color: deepskyblue;
+}
+
+.photos
+{
+    float: left;
+	margin-top: 0.2em; 
+	margin-left: .5%; 
+	height: 255px; 
+	width: 16%; 
+	display : inline-block;
+	margin-bottom: 0.1em;
+    overflow-y:auto;
+}
+
+#mainDiv {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 1.5em;
+}
+
+#contentDiv {  
+  width: 95%;
+  background: #91a3f5;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
 }
