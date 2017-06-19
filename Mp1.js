@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 
+=======
 var changeContents = function(header_id) {
 	var content;
 	if(header_id === "posts") {
@@ -18,3 +20,4 @@ var changeContents = function(header_id) {
 		document.getElementById("contents").textContent = content;
 	}
 }
+>>>>>>> refs/remotes/origin/master
