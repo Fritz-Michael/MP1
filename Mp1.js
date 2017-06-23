@@ -22,26 +22,26 @@
 
 $(document).ready(function() {
 	$("#posts").click( function() {
-		var msg = "Posts goes here";
-
-		$("#contents").text(msg);
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Profile goes here</h1></div>");
+		$("#contentDiv").css("background", "blue");
 	});
 
 	$("#profile").click( function() {
-		var msg = "Profile goes here";
-
-		$("#contents").text(msg);
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Posts goes here</h1></div>");
+		$("#contentDiv").css("background", "yellow");
 	});
 
 	$("#photos").click( function() {
-		var msg = "Photos goes here";
-
-		$("#contents").text(msg);
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Photos goes here</h1></div>");
+		$("#contentDiv").css("background", "green");
 	});
 
 	$("#album").click( function() {
-		var msg = "Album goes here";
-
-		$("#contents").text(msg);
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Album goes here</h1></div>");
+		$("#contentDiv").css("background", "red");
 	});
 });

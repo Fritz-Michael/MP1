@@ -3,6 +3,11 @@
   font: 2em "Arial"
 }
 
+#contentDiv {
+  height: 15em;
+  width: 80%;
+}
+
 body{
   background-image: url("images/bg.jpg");
   background-color: #404040;
