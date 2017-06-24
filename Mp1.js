@@ -15,6 +15,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/posts',
+			async: false,
 			success: function(data) {
 				console.log("sup world", data[0]);
 
@@ -39,6 +40,7 @@ $(document).ready(function() {
 		users = $.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
+			async: false,
 			success: function(result) {
 				for(x = 0; x < result.length; x++) {
 					if(userid == result[x].id) {
