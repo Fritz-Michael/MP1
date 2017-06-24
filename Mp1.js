@@ -1,36 +1,7 @@
 $(document).ready(function() {
 
-	$("#posts").click( function() {
-		var x;
-		var y;
-		var userId;
-		var users;
-		var username;
-
-		$("#mainDiv").empty();
-		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
-		$("#contentDiv").css("background", "blue");
-
-		//ajax part here
-		$.ajax({
-			type: 'GET',
-			url: 'https://jsonplaceholder.typicode.com/posts',
-			async: false,
-			success: function(data) {
-				console.log("sup world", data[0]);
-
-				for( x = 0; x < data.length; x++ ) {
-					$("#contentDiv").append("<br>");
-					$("#contentDiv").append("<p align = \"center\"><b>" + data[x].title + "</b></p>");
-					
-					getUsername(data[x].userId); //dito yung problem
-
-					$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + data[x].body + "</p>");
-					$("#contentDiv").append("<br>");
-				}
-			}
-		});
-	});
+	var globalUsername;
+	var globalUserId;
 
 	var getUsername = function(userid) {
 		var username;
@@ -45,11 +16,42 @@ $(document).ready(function() {
 				for(x = 0; x < result.length; x++) {
 					if(userid == result[x].id) {
 						$("#contentDiv").append("<p align = \"center\"><a href = \"\">" + result[x].username + "</a></p>");
+						x = result.length;
 					}
 				}
 			}
 		});
-}
+	}
+
+	$("#posts").click( function() {
+		var userId;
+		var users;
+		var username;
+
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
+		$("#contentDiv").css("background", "blue");
+
+		//ajax part here
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			//async: false,
+			success: function(data) {
+				$.each(data, function(i, data) {
+					console.log(data);
+					$("#contentDiv").append("<br>");
+					$("#contentDiv").append("<p align = \"center\"><b>" + data.title + "</b></p>");
+				
+
+					//$("#contentDiv").append("<p align = \"center\"><a href = \"\">" + globalUsername + "</a></p>");
+
+					$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + data.body + "</p>");
+					$("#contentDiv").append("<br>");
+				});
+			}
+		});
+	});
 
 	$("#profile").click( function() {
 		var count;
@@ -63,12 +65,10 @@ $(document).ready(function() {
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
 			success: function(data) {
-				console.log("sup world", data[0]);
-				
-				for(count = 0; count < data.length; count++) {
+				$.each(data, function(i,data) {
 					$("#contentDiv").append("<br>");
 					$("#contentDiv").append(data[count].name);
-				}
+				});
 			}
 		});
 	});
