@@ -1,25 +1,3 @@
-
-/*var changeContents = function(header_id) {
-	var content;
-	console.log(header_id);
-	if(header_id === "posts") {
-		content = "posts goes here";
-		document.getElementById("contents").textContent = content;
-	}
-	if(header_id === "profile") {
-		content = "profile goes here";
-		document.getElementById("contents").textContent = content;
-	}
-	if(header_id === "photos") {
-		content = "phtos goes here";
-		document.getElementById("contents").textContent = content;
-	}
-	if(header_id === "album") {
-		content = "album goes here";
-		document.getElementById("contents").textContent = content;
-	}
-}*/
-
 $(document).ready(function() {
 	$("#posts").click( function() {
 		$("#mainDiv").empty();
@@ -37,8 +15,10 @@ $(document).ready(function() {
 	});
 
 	$("#profile").click( function() {
+		var count;
+
 		$("#mainDiv").empty();
-		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Profile goes here</h1></div>");
+		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 		$("#contentDiv").css("background", "yellow");
 
 		//ajax part here
@@ -47,6 +27,11 @@ $(document).ready(function() {
 			url: 'https://jsonplaceholder.typicode.com/users',
 			success: function(data) {
 				console.log("sup world", data[0]);
+				
+				for(count = 0; count < data.length; count++) {
+					$("#contentDiv").append("<br>");
+					$("#contentDiv").append(data[count].name);
+				}
 			}
 		});
 	});
