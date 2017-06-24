@@ -1,27 +1,52 @@
 $(document).ready(function() {
 
-	var globalUsername;
-	var globalUserId;
+	var globalId;
 
-	var getUsername = function(userid) {
-		var username;
-		var users;
-		var x;
-
-		users = $.ajax({
+	var getUserId = function(username) {
+		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
 			async: false,
-			success: function(result) {
-				for(x = 0; x < result.length; x++) {
-					if(userid == result[x].id) {
-						$("#contentDiv").append("<p align = \"center\"><a href = \"\">" + result[x].username + "</a></p>");
-						x = result.length;
-					}
-				}
+			success: function(users) {
+				$.each(users, function(i, users){
+					if(users.username == username)
+						globalId = users.id;
+				});
 			}
 		});
 	}
+
+	$(document).on('click', '.userpost', function() {
+		var elementId;
+
+		elementId = $(this).attr("id");
+
+		console.log(elementId);
+
+		getUserId(elementId);
+
+		console.log(globalId);
+		$("#contentDiv").empty();
+		$("#contentDiv").append("<p align = center>" + elementId + "'s posts </p>");
+		$("#contentDiv").append("<button id = \"return\" align = center>Click here to return</button>");
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			success: function(posts) {
+				$.each(posts, function(i,posts) {
+					if(posts.userId == globalId) {
+						console.log(posts.title);
+						$("#contentDiv").append("<p align = \"center\"><b>" + posts.title + "</b></p>");
+						$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + posts.title + "</p>");
+						console.log("Im here");
+					}
+				});
+			},
+			error: function() {
+				alert("Oops! Something went wrong. Sorry about that.");
+			}
+		});
+	});
 
 	$("#posts").click( function() {
 		var userId;
@@ -32,29 +57,41 @@ $(document).ready(function() {
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 		$("#contentDiv").css("background", "blue");
 
-		//ajax part here
 		$.ajax({
 			type: 'GET',
-			url: 'https://jsonplaceholder.typicode.com/posts',
-			//async: false,
-			success: function(data) {
-				$.each(data, function(i, data) {
-					console.log(data);
-					$("#contentDiv").append("<br>");
-					$("#contentDiv").append("<p align = \"center\"><b>" + data.title + "</b></p>");
-				
-
-					//$("#contentDiv").append("<p align = \"center\"><a href = \"\">" + globalUsername + "</a></p>");
-
-					$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + data.body + "</p>");
+			url: 'https://jsonplaceholder.typicode.com/users',
+			success: function(users) {
+				$.each(users, function(i,users){
+					$("#contentDiv").append("<div class = \"userpost\" id = \"" + users.username + "\">" + users.username + "</button>");
 					$("#contentDiv").append("<br>");
 				});
 			},
 			error: function() {
-				alert("There is an error in loading. We are sorry about that");
+				alert("Oops! Something went wrong. Sorry about that.");
 			}
 		});
 	});
+
+	$(document).on("click", "#return", function() {
+		$("#mainDiv").empty();
+		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
+		$("#contentDiv").css("background", "blue");
+
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/users',
+			success: function(users) {
+				$.each(users, function(i,users){
+					$("#contentDiv").append("<div class = \"userpost\" id = \"" + users.username + "\">" + users.username + "</button>");
+					$("#contentDiv").append("<br>");
+				});
+			},
+			error: function() {
+				alert("Oops! Something went wrong. Sorry about that.");
+			}
+		});
+	});
+
 
 	$("#profile").click( function() {
 		var count;
