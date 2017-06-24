@@ -49,6 +49,9 @@ $(document).ready(function() {
 					$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + data.body + "</p>");
 					$("#contentDiv").append("<br>");
 				});
+			},
+			error: function() {
+				alert("There is an error in loading. We are sorry about that");
 			}
 		});
 	});
@@ -69,6 +72,9 @@ $(document).ready(function() {
 					$("#contentDiv").append("<br>");
 					$("#contentDiv").append(data[count].name);
 				});
+			},
+			error: function() {
+				alert("There is an error in loading. We are sorry about that");
 			}
 		});
 	});
