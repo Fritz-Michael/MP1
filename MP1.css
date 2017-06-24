@@ -6,6 +6,7 @@
 #contentDiv {
   height: 15em;
   width: 80%;
+  overflow-y: auto;
 }
 
 body{
@@ -78,4 +79,9 @@ button:active
   background: transparent;
   border: none;
   color: #fff;
+}
+
+.textBody {
+  font-family: Tahoma;
+  font-size: 0.5em;
 }

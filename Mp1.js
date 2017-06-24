@@ -1,7 +1,14 @@
 $(document).ready(function() {
+
 	$("#posts").click( function() {
+		var x;
+		var y;
+		var userId;
+		var users;
+		var username;
+
 		$("#mainDiv").empty();
-		$("#mainDiv").append("<div id = \"contentDiv\"><h1 id = \"contents\">Posts goes here</h1></div>");
+		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 		$("#contentDiv").css("background", "blue");
 
 		//ajax part here
@@ -10,9 +17,37 @@ $(document).ready(function() {
 			url: 'https://jsonplaceholder.typicode.com/posts',
 			success: function(data) {
 				console.log("sup world", data[0]);
+
+				for( x = 0; x < data.length; x++ ) {
+					$("#contentDiv").append("<br>");
+					$("#contentDiv").append("<p align = \"center\"><b>" + data[x].title + "</b></p>");
+					
+					getUsername(data[x].userId); //dito yung problem
+
+					$("#contentDiv").append("<p align = \"center\" class = \"textBody\">" + data[x].body + "</p>");
+					$("#contentDiv").append("<br>");
+				}
 			}
 		});
 	});
+
+	var getUsername = function(userid) {
+		var username;
+		var users;
+		var x;
+
+		users = $.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/users',
+			success: function(result) {
+				for(x = 0; x < result.length; x++) {
+					if(userid == result[x].id) {
+						$("#contentDiv").append("<p align = \"center\"><a href = \"\">" + result[x].username + "</a></p>");
+					}
+				}
+			}
+		});
+}
 
 	$("#profile").click( function() {
 		var count;
