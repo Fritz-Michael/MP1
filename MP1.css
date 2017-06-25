@@ -1,31 +1,87 @@
 #mainDiv
 {
   font: 2em "Arial"
+}
 
+#contentDiv {
+  height: 15em;
+  width: 80%;
+  overflow-y: auto;
+  overflow-x: auto;
+  vertical-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 body{
-  background-color: #403874;
+  background-image: url("images/bg.jpg");
+  background-color: #404040;
 }
 
-header{
-  margin: 0;
+footer{
+  position: absolute;
+  bottom: 0;
+  border-style: none;
+  border-color: black;
+  font-size: 80%;
+  color: black;
 }
 
-.headerList{
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 2em;
-  background-color: #444;
-}
 
-.headerList div
+
+#leftfooter
 {
+  position: absolute;
+  left: 0;
+}
 
+#rightFooter
+{
+  position: absolute;
+  right: 0;
+}
+
+#headerList{
   background-color: #444;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 150%;
+  color: #fff;
+  border-style: ridge;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#headerList li
+{
+  display: inline;
+  padding: 1em;
+  font-size: 135%;
+}
+
+#mainDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5em;
+}
+
+#return {
+  background: transparent;
+  border: none;
+}
+
+button{
+  color:white;
+  text-decoration: none;
+}
+
+button:hover
+{
+  color:  black;
+}
+
+button:active
+{
+  color:  #262626;
+
 }
 
 .menu {
@@ -34,39 +90,38 @@ header{
   color: #fff;
 }
 
-.menu:hover {
-  color: purple;
+.userpost {
+  background: transparent;
+  border: red;
+  text-align: center;
 }
 
-.menu:active {
-  color: deepskyblue;
+.userphotos {
+  background: transparent;
+  border: red;
+  text-align: center;
 }
 
 .photos
 {
     float: left;
 	margin-top: 0.2em; 
-	margin-left: .5%; 
-	height: 255px; 
-	width: 16%; 
-	display : inline-block;
+	margin-left: 40%; 
+	width: 15%; 
 	margin-bottom: 0.1em;
-    overflow-y:auto;
 }
 
-#mainDiv {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding-top: 1.5em;
+.textBody {
+  font-family: Tahoma;
+  font-size: 0.5em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-#contentDiv {  
-  width: 95%;
-  background: #91a3f5;
-}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
+.textTitle {
+  font-family: Times New Roman;
+  font-size: 0.75em;
+  text-align: center;
+  /*margin-top: 1.5em;*/
 }
