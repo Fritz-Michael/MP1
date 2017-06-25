@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	var globalId;
+
 	var displayPosts = function() {
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
@@ -64,6 +66,7 @@ $(document).ready(function() {
 	}
 
 	var displayProfile = function(userId, returnFunc) {
+		$("#contentDiv").append("<button id = \"" + returnFunc + "\">Return</button>");
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
@@ -71,25 +74,76 @@ $(document).ready(function() {
 				$.each(users, function(i,users) {
 					if(userId == users.id) {
 						$("#contentDiv").append("<p align = center>" + users.name + "</p>");
-						$("#contentDiv").append("<p>Username: " + users.username + "</p>");
-						$("#contentDiv").append("<p>Email: " + users.email + "</p>");
-						$("#contentDiv").append("<p>Address:</p>");
-						$("#contentDiv").append("<p>Street: " + users.address.street + "</p>");
-						$("#contentDiv").append("<p>Suite: " + users.address.suite + "</p>");
-						$("#contentDiv").append("<p>City: " + users.address.city + "</p>");
-						$("#contentDiv").append("<p>Zip Code: " + users.address.zipcode + "</p>");
-						$("#contentDiv").append("<p>Phone Number: " + users.phone + "</p>");
-						$("#contentDiv").append("<p>Website: " + users.website + "</p>");
-						$("#contentDiv").append("<p>Company:</p>");
-						$("#contentDiv").append("<p>Name: " + users.company.name + "</p>");
-						$("#contentDiv").append("<p>Catch Phrase: " + users.company.catchPhrase + "</p>");
-						$("#contentDiv").append("<p>BS: " + users.company.bs + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Username: " + users.username + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Email: " + users.email + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Address:</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">Street: " + users.address.street + "</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">Suite: " + users.address.suite + "</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">City: " + users.address.city + "</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">Zip Code: " + users.address.zipcode + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Phone Number: " + users.phone + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Website: " + users.website + "</p>");
+						$("#contentDiv").append("<p class = \"info\">Company:</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">Name: " + users.company.name + "</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">Catch Phrase: " + users.company.catchPhrase + "</p>");
+						$("#contentDiv").append("<p class = \"subInfo\">BS: " + users.company.bs + "</p>");
+						$("#contentDiv").append("<p align = center id = \"insertPhoto\">Latest Photo Album</p>");
+						globalId = users.id;
+						insertLatestPhotoAlbum(users.id);
 					}
 				});
-				$("#contentDiv").append("<button id = \"" + returnFunc + "\">Return to Profiles</button>");
 			},
 			error: function() {
 				alert("There is an error in loading. We are sorry about that");
+			}
+		});
+	}
+
+	var getLatestAlbum = function(userid) {
+		var latest = 0;
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/albums',
+			async: false,
+			success: function(albums) {
+				$.each(albums, function(i,albums) {
+					if(albums.userId == userid) {
+						if(latest < albums.id)
+							latest = albums.id;
+					}
+				});
+			}
+		});
+		return latest;
+	}
+
+	var insertLatestPhotoAlbum = function(userid) {
+		var albumid;
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/albums',
+			success: function(albums) {
+				$.each(albums, function(i, albums) {
+					if(userid == albums.userId && getLatestAlbum(userid) == albums.id) {
+						albumid = albums.id;
+						$("#contentDiv").append("<p>Title: " + albums.title + "</p>");
+						insertPicture(albums.id);
+					}
+				});
+			}
+		});
+	}
+
+	var insertPicture = function(albumid) {
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/photos',
+			success: function(photos) {
+				$.each(photos, function(i, photos){
+					if(albumid == photos.albumId) {
+						$("#contentDiv").append("<img src = \"" + photos.url + ".jpg\">");
+					}
+				});
 			}
 		});
 	}
