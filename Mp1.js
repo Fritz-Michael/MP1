@@ -48,7 +48,6 @@ $(document).ready(function() {
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 
-		//ajax part here
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
@@ -131,9 +130,9 @@ $(document).ready(function() {
 			success: function(posts) {
 				$.each(posts, function(i, posts) {
 					if(getLatestPost(userid) == posts.id) {
-						console.log("hello");
 						$("#postDiv").append("<p align = \"center\"><b>Title: " + posts.title + "</b></p>");
 						$("#postDiv").append("<p align = \"center\">" + posts.body + "</p>");
+						$("#postDiv").append("<a id = \"showMorePost\" userid = \"" + userid + "\" postid = \"" + posts.id + "\">Show More</a></p>");
 					}
 				});
 			}
@@ -170,21 +169,23 @@ $(document).ready(function() {
 						albumid = albums.id;
 						$("#albumDiv").append("<p>Title: " + albums.title + "</p>");
 						$("#albumDiv").append("<div id = \"photosDiv\"></div>");
-						insertPicture(albums.id);
+						insertPicture(albums.id,"#photosDiv");
+						$("#albumDiv").append("<a id = \"showMoreAlbum\" albumid = \"" + albums.id + "\" userid = \"" + albums.userId + "\">Show More</a>");
 					}
 				});
 			}
 		});
 	}
 
-	var insertPicture = function(albumid) {
+	var insertPicture = function(albumid, location) {
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/photos',
+			async: false,
 			success: function(photos) {
 				$.each(photos, function(i, photos){
 					if(albumid == photos.albumId) {
-						$("#photosDiv").append("<img src = \"" + photos.url + ".jpg\" style = \"height: 90px; width: 90px;\">");
+						$(location).append("<img src = \"" + photos.url + ".jpg\" style = \"height: 90px; width: 90px;\">");
 					}
 				});
 			}
@@ -217,11 +218,70 @@ $(document).ready(function() {
 
 	});
 
+	$(document).on("click", "#showMorePost", function() {
+		var id;
+		var postid;
+
+		$(this).css("display","none");
+		$("#postDiv").append("<div id = \"morePostDiv\"></div>");
+		$.ajax({
+			try: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			success: function(posts) {
+				$.each(posts, function(i,posts) {
+					id = $("#showMorePost").attr("userid");
+					postid = $("#showMorePost").attr("postid");
+					if(id == posts.userId) {
+						if(posts.id != postid) {
+							$("#morePostDiv").append("<p align = \"center\"><b>Title: " + posts.title + "</b></p>");
+							$("#morePostDiv").append("<p align = \"center\">" + posts.body + "</p>");
+						}
+					}
+				});
+				$("#morePostDiv").append("<a id = \"showLessPost\">Show Less</a></p>");
+			}
+		});
+	});
+
+	$(document).on("click", "#showLessPost", function() {
+		$("#morePostDiv").css("display","none");
+	});
+
 	$(document).on("click", "#personalInfo", function(){
 		if($("#personalInfoDiv").css("display") == "none")
 			$("#personalInfoDiv").css("display","block");
 		else
 			$("#personalInfoDiv").css("display","none");
+	});
+
+	$(document).on("click", "#showMoreAlbum", function() {
+		var id;
+		var albumid;
+
+		$(this).css("display","none");
+		$("#albumDiv").append("<div id = \"moreAlbumDiv\"></div>");
+		$.ajax({
+			try: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/albums',
+			aync: false,
+			success: function(albums) {
+				$.each(albums, function(i,albums) {
+					id = $("#showMoreAlbum").attr("userid");
+					albumid = $("#showMoreAlbum").attr("albumid");
+					if(id == albums.userId) {
+						if(albums.id != albumid) {
+							$("#moreAlbumDiv").append("<p align = \"center\"><b>Title: " + albums.title + "</b></p>");
+							insertPicture(albums.id, "#moreAlbumDiv");
+						}
+					}
+				});
+				$("#moreAlbumDiv").append("<br><a id = \"showLessAlbum\">Show Less</a></p>");
+			}
+		});
+	});
+
+	$(document).on("click", "#showLessAlbum", function() {
+		$("#moreAlbumDiv").css("display","none");
 	});
 
 	$(document).on("click", "#album", function(){
