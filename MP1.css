@@ -13,6 +13,20 @@
   flex-direction: column;
 }
 
+#photosDiv {
+  display: inline-block;
+  height: auto;
+  width: 20em;
+}
+
+#personalInfoDiv {
+  display: none;
+}
+
+#albumDiv {
+  display: none;
+}
+
 body{
   background-image: url("images/bg.jpg");
   background-color: #404040;
@@ -64,6 +78,10 @@ footer{
 }
 
 a {
+  color: red;
+}
+
+a:hover {
   color: black;
 }
 
@@ -83,10 +101,6 @@ button:active
 {
   color:  #262626;
 
-}
-
-a:hover {
-  color: red;
 }
 
 .menu {

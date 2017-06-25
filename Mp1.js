@@ -74,22 +74,28 @@ $(document).ready(function() {
 				$.each(users, function(i,users) {
 					if(userId == users.id) {
 						$("#contentDiv").append("<p align = center>" + users.name + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Username: " + users.username + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Email: " + users.email + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Address:</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">Street: " + users.address.street + "</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">Suite: " + users.address.suite + "</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">City: " + users.address.city + "</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">Zip Code: " + users.address.zipcode + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Phone Number: " + users.phone + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Website: " + users.website + "</p>");
-						$("#contentDiv").append("<p class = \"info\">Company:</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">Name: " + users.company.name + "</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">Catch Phrase: " + users.company.catchPhrase + "</p>");
-						$("#contentDiv").append("<p class = \"subInfo\">BS: " + users.company.bs + "</p>");
-						$("#contentDiv").append("<p align = center id = \"insertPhoto\">Latest Photo Album</p>");
+						$("#contentDiv").append("<a id = \"personalInfo\">Personal Information</a>");
+						$("#contentDiv").append("<div id = \"personalInfoDiv\"></div>");
+						$("#personalInfoDiv").append("<p class = \"info\">Username: " + users.username + "</p>");
+						$("#personalInfoDiv").append("<p class = \"info\">Email: " + users.email + "</p>");
+						$("#personalInfoDiv").append("<p class = \"info\">Address:</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">Street: " + users.address.street + "</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">Suite: " + users.address.suite + "</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">City: " + users.address.city + "</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">Zip Code: " + users.address.zipcode + "</p>");
+						$("#personalInfoDiv").append("<p class = \"info\">Phone Number: " + users.phone + "</p>");
+						$("#personalInfoDiv").append("<p class = \"info\">Website: " + users.website + "</p>");
+						$("#personalInfoDiv").append("<p class = \"info\">Company:</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">Name: " + users.company.name + "</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">Catch Phrase: " + users.company.catchPhrase + "</p>");
+						$("#personalInfoDiv").append("<p class = \"subInfo\">BS: " + users.company.bs + "</p>");
+						$("#contentDiv").append("<a id = \"album\">Latest Photo Album</a>");
+						$("#contentDiv").append("<div id = \"albumDiv\"></div>");
 						globalId = users.id;
 						insertLatestPhotoAlbum(users.id);
+						$("#contentDiv").append("<a id = \"post\">Latest Post</a>");
+						$("#contentDiv").append("<div id = \"postDiv\"></div>");
+						insertLatestPost(users.id);
 					}
 				});
 			},
@@ -98,6 +104,42 @@ $(document).ready(function() {
 			}
 		});
 	}
+
+
+	var getLatestPost = function(userid) {
+		var latest = 0;
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			async: false,
+			success: function(posts) {
+				$.each(posts, function(i,posts) {
+					if(posts.userId == userid) {
+						if(latest < posts.id)
+							latest = posts.id;
+					}
+				});
+			}
+		});
+		return latest;
+	}
+
+
+	var insertLatestPost = function(userid) {
+		$.ajax({
+			type: 'GET',
+			url: 'https://jsonplaceholder.typicode.com/posts',
+			success: function(posts) {
+				$.each(posts, function(i, posts) {
+					if(userid == posts.userId && getLatestPost(userid) == post.id) {
+						$("#postDiv").append("<p align = \"center\"><b>Title: " + posts.title + "</b></p>");
+						$("#postDiv").append("<p align = \"center\">Title: " + posts.body + "</p>");
+					}
+				});
+			}
+		});
+	}
+
 
 	var getLatestAlbum = function(userid) {
 		var latest = 0;
@@ -126,7 +168,8 @@ $(document).ready(function() {
 				$.each(albums, function(i, albums) {
 					if(userid == albums.userId && getLatestAlbum(userid) == albums.id) {
 						albumid = albums.id;
-						$("#contentDiv").append("<p>Title: " + albums.title + "</p>");
+						$("#albumDiv").append("<p>Title: " + albums.title + "</p>");
+						$("#albumDiv").append("<div id = \"photosDiv\"></div>");
 						insertPicture(albums.id);
 					}
 				});
@@ -141,7 +184,7 @@ $(document).ready(function() {
 			success: function(photos) {
 				$.each(photos, function(i, photos){
 					if(albumid == photos.albumId) {
-						$("#contentDiv").append("<img src = \"" + photos.url + ".jpg\">");
+						$("#photosDiv").append("<img src = \"" + photos.url + ".jpg\" style = \"height: 90px; width: 90px;\">");
 					}
 				});
 			}
@@ -173,6 +216,58 @@ $(document).ready(function() {
 		displayProfile(userId, "returnPosts");
 
 	});
+
+	$(document).on("mouseover", "#personalInfo", function(){
+		$("#personalInfoDiv").css("display","block");
+	});
+
+	$(document).on("mouseover", "#personalInfoDiv", function(){
+		$("#personalInfoDiv").css("display","block");
+	});
+
+	$(document).on("mouseleave", "#personalInfo", function(){
+		$("#personalInfoDiv").css("display","none");
+	});
+
+	$(document).on("mouseleave", "#personalInfoDiv", function(){
+		$("#personalInfoDiv").css("display","none");
+	});
+
+
+	$(document).on("mouseover", "#album", function(){
+		$("#albumDiv").css("display","block");
+	});
+
+	$(document).on("mouseover", "#albumDiv", function(){
+		$("#albumDiv").css("display","block");
+	});
+
+	$(document).on("mouseleave", "#album", function(){
+		$("#albumDiv").css("display","none");
+	});
+
+	$(document).on("mouseleave", "#albumDiv", function(){
+		$("#albumDiv").css("display","none");
+	});
+
+
+	$(document).on("mouseover", "#post", function(){
+		$("#postDiv").css("display","block");
+	});
+
+	$(document).on("mouseover", "#postDiv", function(){
+		$("#postDiv").css("display","block");
+	});
+
+	$(document).on("mouseleave", "#post", function(){
+		$("#postDiv").css("display","none");
+	});
+
+	$(document).on("mouseleave", "#postDiv", function(){
+		$("#postDiv").css("display","none");
+	});
+
+
 
 	$(document).on("click", "#returnProfiles", function() {
 		$("#mainDiv").empty();
