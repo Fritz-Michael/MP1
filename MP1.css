@@ -3,6 +3,16 @@
   font: 2em "Arial"
 }
 
+#contentDiv {
+  height: 15em;
+  width: 80%;
+  overflow-y: auto;
+  overflow-x: auto;
+  vertical-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
 body{
   background-image: url("images/bg.jpg");
   background-color: #404040;
@@ -33,7 +43,6 @@ footer{
 
 #headerList{
   background-color: #444;
-<<<<<<< HEAD
   color: #fff;
   border-style: ridge;
   border-radius: 10px;
@@ -47,24 +56,37 @@ footer{
   font-size: 135%;
 }
 
-a{
+#mainDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1.5em;
+}
+
+a {
+  color: black;
+}
+
+button{
   color:white;
   text-decoration: none;
+  background: transparent;
+  border: none;
 }
 
-a:hover
+button:hover
 {
-  color:  black;
+  color: black;
 }
 
-a:active
+button:active
 {
   color:  #262626;
-=======
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 150%;
->>>>>>> refs/remotes/origin/master
+
+}
+
+a:hover {
+  color: red;
 }
 
 .menu {
@@ -73,23 +95,22 @@ a:active
   color: #fff;
 }
 
-.menu:hover {
-  color: purple;
+.userpost {
+  background: transparent;
+  border: red;
+  text-align: center;
 }
 
-.menu:active {
-  color: green;
+.textBody {
+  font-family: Tahoma;
+  font-size: 0.5em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
-#mainDiv {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding-top: 1.5em;
-}
-
-#contentDiv {
-  height: 80%;
-  width: 95%;
-  background: red;
+.textTitle {
+  font-family: Times New Roman;
+  font-size: 0.75em;
+  text-align: center;
 }
