@@ -126,14 +126,16 @@ $(document).ready(function() {
 
 
 	var insertLatestPost = function(userid) {
+
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/posts',
 			success: function(posts) {
 				$.each(posts, function(i, posts) {
-					if(userid == posts.userId && getLatestPost(userid) == post.id) {
+					if(getLatestPost(userid) == posts.id) {
+						console.log("hello");
 						$("#postDiv").append("<p align = \"center\"><b>Title: " + posts.title + "</b></p>");
-						$("#postDiv").append("<p align = \"center\">Title: " + posts.body + "</p>");
+						$("#postDiv").append("<p align = \"center\">" + posts.body + "</p>");
 					}
 				});
 			}
