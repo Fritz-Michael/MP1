@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-	var displayPosts = function() {
+	$("#posts").click( function() {
+
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 		$("#contentDiv").css("background", "blue");
@@ -29,7 +30,7 @@ $(document).ready(function() {
 					url: 'https://jsonplaceholder.typicode.com/users',
 					success: function(users) {
 						$.each(users, function(i,users) {
-							$(".textTitle.post" + users.id).append("<p class = \"textUser\">by <button class = \"names\" id = \"" + users.id + "\">" + users.username + "</button></p>");
+							$(".textTitle.post" + users.id).append("<p class = \"textUser\"><a href = \"\">" + users.username + "</a></p>");
 						});
 					},
 					error: function() {
@@ -41,9 +42,10 @@ $(document).ready(function() {
 				alert("Oops! Something went wrong. Sorry about that.");
 			}
 		});
-	}
+	});
 
-	var displayUsers = function() {
+	$("#profile").click( function() {
+
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
 		$("#contentDiv").css("background", "blue");
@@ -61,9 +63,14 @@ $(document).ready(function() {
 				alert("There is an error in loading. We are sorry about that");
 			}
 		});
-	}
+	});
 
-	var displayProfile = function(userId, returnFunc) {
+	$(document).on("click", ".userProfile", function(){
+		var userId;
+		console.log("hello");
+		$("#contentDiv").empty();
+		userId = $(this).attr("id");
+		
 		$.ajax({
 			type: 'GET',
 			url: 'https://jsonplaceholder.typicode.com/users',
@@ -86,37 +93,12 @@ $(document).ready(function() {
 						$("#contentDiv").append("<p>BS: " + users.company.bs + "</p>");
 					}
 				});
-				$("#contentDiv").append("<button id = \"" + returnFunc + "\">Return to Profiles</button>");
+				$("#contentDiv").append("<button id = \"returnProfiles\">Return to Profiles</button>");
 			},
 			error: function() {
 				alert("There is an error in loading. We are sorry about that");
 			}
 		});
-	}
-
-	$("#posts").click( function() {
-		displayPosts();
-	});
-
-	$("#profile").click( function() {
-		displayUsers();
-	});
-
-	$(document).on("click", ".userProfile", function(){
-		var userId;
-		$("#contentDiv").empty();
-		userId = $(this).attr("id");
-		
-		displayProfile(userId, "returnProfiles");
-
-	});
-
-	$(document).on("click", ".names", function(){
-		var userId;
-		$("#contentDiv").empty();
-		userId = $(this).attr("id");
-		
-		displayProfile(userId, "returnPosts");
 
 	});
 
@@ -138,15 +120,6 @@ $(document).ready(function() {
 				alert("There is an error in loading. We are sorry about that");
 			}
 		});
-	});
-
-	$(document).on("click", "#returnPosts", function() {
-		$("#mainDiv").empty();
-		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
-		$("#contentDiv").css("background", "blue");
-
-		//ajax part here
-		displayPosts();
 	});
 
 	$("#photos").click( function() {
