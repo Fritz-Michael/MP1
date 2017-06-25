@@ -5,7 +5,6 @@ $(document).ready(function() {
 	var displayPosts = function() {
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
-		$("#contentDiv").css("background", "blue");
 
 		$.ajax({
 			type: 'GET',
@@ -48,7 +47,6 @@ $(document).ready(function() {
 	var displayUsers = function() {
 		$("#mainDiv").empty();
 		$("#mainDiv").append("<div id = \"contentDiv\"></div>");
-		$("#contentDiv").css("background", "blue");
 
 		//ajax part here
 		$.ajax({
@@ -219,57 +217,26 @@ $(document).ready(function() {
 
 	});
 
-	$(document).on("mouseover", "#personalInfo", function(){
-		$("#personalInfoDiv").css("display","block");
+	$(document).on("click", "#personalInfo", function(){
+		if($("#personalInfoDiv").css("display") == "none")
+			$("#personalInfoDiv").css("display","block");
+		else
+			$("#personalInfoDiv").css("display","none");
 	});
 
-	$(document).on("mouseover", "#personalInfoDiv", function(){
-		$("#personalInfoDiv").css("display","block");
+	$(document).on("click", "#album", function(){
+		if($("#albumDiv").css("display") == "none")
+			$("#albumDiv").css("display","block");
+		else
+			$("#albumDiv").css("display","none");
 	});
 
-	$(document).on("mouseleave", "#personalInfo", function(){
-		$("#personalInfoDiv").css("display","none");
+	$(document).on("click", "#post", function(){
+		if($("#postDiv").css("display") == "none")
+			$("#postDiv").css("display","block");
+		else
+			$("#postDiv").css("display","none");
 	});
-
-	$(document).on("mouseleave", "#personalInfoDiv", function(){
-		$("#personalInfoDiv").css("display","none");
-	});
-
-
-	$(document).on("mouseover", "#album", function(){
-		$("#albumDiv").css("display","block");
-	});
-
-	$(document).on("mouseover", "#albumDiv", function(){
-		$("#albumDiv").css("display","block");
-	});
-
-	$(document).on("mouseleave", "#album", function(){
-		$("#albumDiv").css("display","none");
-	});
-
-	$(document).on("mouseleave", "#albumDiv", function(){
-		$("#albumDiv").css("display","none");
-	});
-
-
-	$(document).on("mouseover", "#post", function(){
-		$("#postDiv").css("display","block");
-	});
-
-	$(document).on("mouseover", "#postDiv", function(){
-		$("#postDiv").css("display","block");
-	});
-
-	$(document).on("mouseleave", "#post", function(){
-		$("#postDiv").css("display","none");
-	});
-
-	$(document).on("mouseleave", "#postDiv", function(){
-		$("#postDiv").css("display","none");
-	});
-
-
 
 	$(document).on("click", "#returnProfiles", function() {
 		$("#mainDiv").empty();

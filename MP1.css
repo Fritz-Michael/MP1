@@ -27,6 +27,10 @@
   display: none;
 }
 
+#postDiv {
+  display: none;
+}
+
 body{
   background-image: url("images/bg.jpg");
   background-color: #404040;
