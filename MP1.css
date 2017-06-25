@@ -8,6 +8,9 @@
   width: 80%;
   overflow-y: auto;
   overflow-x: auto;
+  vertical-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 body{
@@ -63,7 +66,6 @@ footer{
 #return {
   background: transparent;
   border: none;
-  padding-top: 0;
 }
 
 button{
@@ -90,11 +92,21 @@ button:active
 
 .userpost {
   background: transparent;
-  border: none;
-  height: 25%;
+  border: red;
+  text-align: center;
 }
 
 .textBody {
   font-family: Tahoma;
   font-size: 0.5em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.textTitle {
+  font-family: Times New Roman;
+  font-size: 0.75em;
+  text-align: center;
+  /*margin-top: 1.5em;*/
 }
