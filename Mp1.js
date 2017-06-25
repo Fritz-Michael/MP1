@@ -72,8 +72,18 @@ $(document).ready(function() {
 					url: 'https://jsonplaceholder.typicode.com/posts',
 					success: function(posts) {
 						$.each(posts, function(i,posts) {
-							$("#" + posts.userId).append("<p class = \"textTitle\"><b>" + posts.title + "</b></p>");
+							$("#" + posts.userId).append("<p class = \"textTitle post" + posts.userId + "\"><b>" + posts.title + "</b></p>");
 							$("#" + posts.userId).append("<p class = \"textBody\">" + posts.body + "</p>");
+						});
+					}
+				});
+				$.ajax({
+					type: 'GET',
+					url: 'https://jsonplaceholder.typicode.com/users',
+					success: function(users) {
+						$.each(users, function(i,users) {
+							//$(".textTitle").eq(i).append("<p>hello</p>");
+							$(".textTitle.post" + users.id).append("<p class = \"textUser\"><a href = \"\">" + users.username + "</a></p>");
 						});
 					}
 				});
